@@ -81,7 +81,7 @@ export const configureAssistant = (voice: string, style: string) => {
       style as keyof (typeof tamilVoices)[keyof typeof tamilVoices]
     ] || tamilVoices.male.casual; // default fallback
 
-  const vapiAssistant: CreateAssistantDTO = {
+  const vapiAssistant = {
     name: "Companion",
     firstMessage:
       "வணக்கம், இன்றைய தலைப்பைப் பற்றி பேசலாம். தலைப்பு: {{topic}}.",
@@ -120,6 +120,6 @@ export const configureAssistant = (voice: string, style: string) => {
     },
     clientMessages: [],
     serverMessages: [],
-  } as CreateAssistantDTO;
-  return vapiAssistant;
+  };
+  return vapiAssistant as CreateAssistantDTO;
 };
