@@ -14,7 +14,6 @@ enum CallStatus {
 }
 
 const CompanionComponent = ({
-  companionId,
   subject,
   topic,
   name,
@@ -83,7 +82,7 @@ const CompanionComponent = ({
       clientMessages: ["transcript"],
       serverMessages: [],
     };
-    // @ts-expect-error
+    // @ts-expect-error vapi-sdk type mismatch for overrides parameter
     vapi.start(configureAssistant(voice, style), assistantsOverrides);
   };
   const handleDisconnect = () => {
