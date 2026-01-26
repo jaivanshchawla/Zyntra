@@ -4,6 +4,9 @@ import CTA from "@/components/CTA";
 import { recentSessions } from "@/constants";
 import React from "react";
 
+// Disable static generation since layout uses ClerkProvider
+export const dynamic = "force-dynamic";
+
 const Page = () => {
   return (
     <main>
