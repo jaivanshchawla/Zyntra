@@ -1,11 +1,6 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
-// TEMP: Disable Clerk middleware to avoid runtime failures in production.
-// Auth is enforced via ClerkProvider and page-level logic instead.
-export function middleware(_req: NextRequest) {
-  return NextResponse.next();
-}
+export default clerkMiddleware();
 
 export const config = {
   matcher: [
