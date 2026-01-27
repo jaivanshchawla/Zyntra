@@ -1,0 +1,49 @@
+
+> zyntra@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.9
+   - Environments: .env.local, .env.production
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings in 3.0s
+
+./node_modules/@supabase/realtime-js/dist/main/RealtimeClient.js
+Critical dependency: the request of a dependency is an expression
+
+Import trace for requested module:
+./node_modules/@supabase/realtime-js/dist/main/RealtimeClient.js
+./node_modules/@supabase/realtime-js/dist/main/index.js
+./node_modules/@supabase/supabase-js/dist/module/index.js
+./lib/supabase.ts
+./lib/actions/companion.actions.ts
+./app/companions/page.tsx
+
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (187kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ✓ Compiled successfully in 11.5s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/3) ...
+ ✓ Generating static pages (3/3)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ƒ /                                    1.82 kB         120 kB
+├ ƒ /_not-found                            127 B         102 kB
+├ ƒ /companions                             6 kB         151 kB
+├ ƒ /companions/[id]                      157 kB         272 kB
+├ ƒ /companions/new                      29.3 kB         166 kB
+├ ƒ /my-journey                            127 B         102 kB
+├ ƒ /sign-in/[[...sign-in]]                507 B         138 kB
+└ ƒ /subscription                          507 B         138 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/255-cb395327542b56ef.js       45.9 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js  54.2 kB
+  └ other shared chunks (total)          2.05 kB
+
+
+ƒ Middleware                             83.4 kB
+
+ƒ  (Dynamic)  server-rendered on demand
+
