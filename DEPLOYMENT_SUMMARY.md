@@ -94,7 +94,7 @@ You'll need these 5 values:
 | **Clerk** | `CLERK_SECRET_KEY` | dashboard.clerk.com → Settings → API Keys |
 | **Supabase** | `NEXT_PUBLIC_SUPABASE_URL` | supabase.com/dashboard → Settings → API |
 | **Supabase** | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | supabase.com/dashboard → Settings → API |
-| **Vapi** | `NEXT_PUBLIC_VAPI_WEB_TOKEN` | dashboard.vapi.ai → Account → API Keys |
+| **Vapi** | `NEXT_PUBLIC_VAPI_WEB_TOKEN` | dashboard.vapi.ai → Account → API Keys (use the public web token for the browser SDK) |
 
 ---
 
