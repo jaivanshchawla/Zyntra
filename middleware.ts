@@ -1,31 +1,39 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 // Define public routes that don't require authentication
 const isPublicRoute = createRouteMatcher([
-  '/',
-  '/sign-in(.*)',
-  '/sign-up(.*)',
-  '/api/webhook(.*)',
+  "/",
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/api/webhook(.*)",
+  "/companions",
+  "/subscription",
 ]);
 
 export default clerkMiddleware(async (auth, request) => {
+  // For public routes, just continue
+  if (isPublicRoute(request)) {
+    return NextResponse.next();
+  }
+
+  // For protected routes, check auth but don't throw
   try {
-    // Only protect non-public routes
-    if (!isPublicRoute(request)) {
-      await auth.protect();
-    }
-  } catch (error) {
-    // Log error but don't throw to prevent 500 errors
-    console.error('Clerk middleware error:', error);
-    // Allow request to continue - Clerk will handle auth state in components
+    await auth.protect();
+  } catch {
+    // Redirect to sign-in if not authenticated
+    const signInUrl = new URL("/sign-in", request.url);
+    signInUrl.searchParams.set("redirect_url", request.url);
+    return NextResponse.redirect(signInUrl);
   }
 });
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
+    // Skip Next.js internals and all static files
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
     // Always run for API routes
     "/(api|trpc)(.*)",
   ],
 };
+
