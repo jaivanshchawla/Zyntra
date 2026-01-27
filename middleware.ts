@@ -1,8 +1,10 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-// Middleware is minimal since all pages use force-dynamic rendering
-// and Clerk is wrapped in the RootLayout
-export default clerkMiddleware();
+export function middleware(request: NextRequest) {
+  // Pass through all requests - auth is handled in RootLayout and individual pages
+  return NextResponse.next();
+}
 
 export const config = {
   matcher: [
