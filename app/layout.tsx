@@ -11,6 +11,8 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 
+const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
@@ -26,8 +28,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (!clerkPublishableKey) {
+    // Fail gracefully if Clerk is misconfigured in the environment
+    return (
+      <html lang="en">
+        <body className={`${bricolage.variable} antialiased`}>
+          <Navbar />
+          <main className="p-6">
+            <p className="text-red-600 font-semibold">
+              Clerk is not configured correctly. Missing NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY.
+            </p>
+          </main>
+          {children}
+        </body>
+      </html>
+    );
+  }
+
   return (
-    <ClerkProvider appearance={{ variables: { colorPrimary: "#FE5933" } }}>
+    <ClerkProvider
+      publishableKey={clerkPublishableKey}
+      appearance={{ variables: { colorPrimary: "#FE5933" } }}
+    >
       <html lang="en">
         <body className={`${bricolage.variable} antialiased`}>
           <header>
