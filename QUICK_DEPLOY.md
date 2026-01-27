@@ -267,6 +267,7 @@ GitHub Actions workflow is configured to:
 - [ ] AI responses are generated
 - [ ] Session can be ended
 - [ ] Companions library displays correctly
+- [ ] Companions are loaded from the `zyntra-prod` Supabase project in production
 - [ ] Search and filter work
 
 ---
